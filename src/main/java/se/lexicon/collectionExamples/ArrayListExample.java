@@ -1,15 +1,14 @@
 package se.lexicon.collectionExamples;
 
-import java.util.ArrayList;
-import java.util.Iterator;
-import java.util.List;
+import se.lexicon.collectionExamples.model.Person;
+
+import java.util.*;
 
 public class ArrayListExample {
 
 
   public static void main(String[] args) {
-    ex3();
-
+    ex6();
   }
 
 
@@ -87,5 +86,57 @@ public class ArrayListExample {
 
   }
 
+  // convert list to array
+  public static void ex4() {
+    List<String> contacts = new ArrayList<>();
+    contacts.add("0700000000");
+    contacts.add("0700000001");
+    contacts.add("0700000002");
+    contacts.add("0700000003");
+    Object[] newArr = contacts.toArray();
+    System.out.println(newArr.length);
+    System.out.println(contacts.size());
 
+  }
+
+  // sort data in arraylist
+  public static void ex5(){
+    List<String> names = new ArrayList<>();
+    names.add("Mehrdad");
+    names.add("Simon");
+    names.add("Ulf");
+    names.add("erik");
+    //Collections.sort(names);
+    Collections.sort(names, String.CASE_INSENSITIVE_ORDER);
+    System.out.println(names);
+  }
+
+  public static void ex6(){
+    List<Person> personList = new ArrayList<>();
+    personList.add(new Person(1,"Test2","Test11", "Test1"));
+    personList.add(new Person(3,"Test1","Test11", "Test1"));
+    personList.add(new Person(2,"Test2","Test22", "Test1"));
+    personList.add(new Person(1,"Test3","Test33", "Test1"));
+    System.out.println("default Data for PersonList: \n" + personList);
+    // sort object by comparable interface
+    // comparable interface is used to sort objects with natural ordering.
+    //Collections.sort(personList);
+    //System.out.println("sorted Data for PersonList: \n" + personList);
+
+    Collections.sort(personList, new Comparator<Person>() {
+      @Override
+      public int compare(Person o1, Person o2) {
+        return o1.getFirstName().compareTo(o2.getFirstName());
+      }
+    });
+
+
+    Collections.sort(personList, new Comparator<Person>() {
+      @Override
+      public int compare(Person o1, Person o2) {
+        return o1.getLastName().compareTo(o2.getLastName());
+      }
+    });
+    System.out.println("sorted Data for PersonList through the Comparator interface: \n" + personList);
+  }
 }
