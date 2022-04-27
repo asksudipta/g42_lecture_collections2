@@ -47,4 +47,9 @@ public class CourseDaoImpl implements CourseDao {
     // todo: implement it
     return null;
   }
+
+  @Override
+  public List<Course> getAll() {
+    return null;
+  }
 }
